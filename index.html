@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style>
+     
+
+
+  /* 垂直方向にスケールを変えるキーフレーム */
+@keyframes grow-progress {
+  from {
+    scale: 1000% 1000%;
+    
+  }
+  to {
+    scale: 300% 300%;
+  }
+}
+
+.animationElement {
+
+  
+  /* スタイリング */
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  background: royalblue;
+  transform-origin: top; /* 下部を変形の基準にしておく */
+
+  
+  /* スクロールアニメーションの設定 */
+  animation: grow-progress linear; /* アニメーションを指定。イージングはlinear */
+  animation-timeline: scroll();
+}
+.animationElement2 {
+
+  
+/* スタイリング */
+position: fixed;
+bottom: 0;
+width: 10px;
+height: 10px;
+background: royalblue;
+transform-origin: top; /* 下部を変形の基準にしておく */
+
+
+/* スクロールアニメーションの設定 */
+animation: grow-progress linear; /* アニメーションを指定。イージングはlinear */
+animation-timeline: scroll();
+}
+
+
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#animation {
+  animation: fade-in 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+  </style>
+    <title>てんじる。</title>
+    <link rel="icon" href="favicon.ico" id="favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
+  </head>
+
+  <body style=" animation: fade-in 3s;animation-fill-mode: forwards; height: 200vh;  background-image: linear-gradient(90deg, rgba(36, 55, 111, 1) 10%, rgba(101, 90, 167, 1) 43%, rgba(133, 76, 185, 1) 60%, rgba(56, 144, 170, 1) 77%, rgba(219, 154, 105, 1)); background-size:cover;">
+
+
+  <main>
+<div align="center">
+    <img class="animationElement" src="てんじる。.png" style="">
+
+    <a href="visit.html"  style="position: absolute; bottom: -800; left:25%;">
+	<h2 style="text-align:center; color:white;">作品を見る</h2>
+	<img id="appearImg" class="hidden" src="87d3ed08b43bd8c074c19e234175d0fa.png" style=" width: 300px; height: 300px;">
+    </a>
+    
+<a href="exhibit.html"  style="position: absolute; bottom: -800; left:45%;">
+	<h2 style="text-align:center; color:white;">作品を出品する</h2>
+	<img id="appearImg" class="hidden" src="8a43a16059f1a0fc54e9ce87785fe397.png" style=" width: 300px; height: 300px;">
+    </a>
+
+<a href="info.html"  style="position: absolute; bottom: -800; left:65%;">
+	<h2 style="text-align:center; color:white;">総合案内</h2>
+	<img id="appearImg" class="hidden" src="846a840a6f9e7f4a11c9465d17652050.png" style=" width: 300px; height: 300px;">
+    </a>
+
+</div>
+  </main>
+   <style>
+ 
+</style>
+
+<script>
+ 
+  
+</script> 
+
+  <footer style="background-color:191970; position: absolute; bottom: -1000; text-align:center;">
+    <small style="color:white;">&copy; 2025 <a href="http://x.com/canegon330" style="color:white;">@Canegon330</a></small>
+</footer>
+
+
+  </body>
+  
+
+  
+  
+</html>

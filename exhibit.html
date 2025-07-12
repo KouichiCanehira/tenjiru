@@ -1,20 +1,9 @@
-<html>
+<html lang="ja">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <style>
      
 
-
-  /* 垂直方向にスケールを変えるキーフレーム */
-@keyframes grow-progress {
-  from {
-    scale: 1000% 1000%;
-    
-  }
-  to {
-    scale: 300% 300%;
-  }
-}
 
 .animationElement {
 
@@ -73,17 +62,146 @@ animation-timeline: scroll();
     opacity: 1;
   }
 }
+
+
+.field {
+  display: flex;
+  justify-content: space-around; /* 要素間のスペースを均等に配置 */
+  
+  gap: 20px;                     /* 要素間の隙間（任意） */
+  
+  position: relative;            /* 子要素のabsolute位置指定の基準に */
+}
+
+.content {
+  position: relative;            /* 子要素のabsolute位置指定の基準に */
+}
+
+
+/* モーダルと背景の指定 */
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0,0,0,50%);
+  padding: 40px 20px;
+  overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+  box-sizing: border-box;
+}
+
+/* モーダルの擬似要素の指定 */
+.modal:before{
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  margin-left: -0.2em;
+}
+
+/* クラスが追加された時の指定 */
+.modal.is-active{
+  opacity: 1;
+  visibility: visible;
+}
+
+/* モーダル内側の指定 */
+.modal-container{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 600px;
+  width: 90%;
+}
+
+/* モーダルを閉じるボタンの指定 */
+.modal-close{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background: #000;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* モーダルのコンテンツ部分の指定 */
+.modal-content{
+  background: #fff;
+  text-align: left;
+  line-height: 1.8;
+  padding: 20px;
+}
+
+/* モーダルのコンテンツ部分のテキストの指定 */
+.modal-content p{
+  margin: 1em 0;
+}
   </style>
     <title>てんじる。</title>
     <link rel="icon" href="favicon.ico" id="favicon">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
-    <meta http-equiv="refresh" content="0;url= preparation.html">
+    
   </head>
 
-  <body style=" animation: fade-in 3s;animation-fill-mode: forwards; height: 200vh;  background-image: linear-gradient(90deg, rgba(36, 55, 111, 1) 10%, rgba(101, 90, 167, 1) 43%, rgba(133, 76, 185, 1) 60%, rgba(56, 144, 170, 1) 77%, rgba(219, 154, 105, 1)); background-size:cover;">
+  <body style=" animation: fade-in 3s;animation-fill-mode: forwards;  background-image: linear-gradient(90deg, rgba(36, 55, 111, 1) 10%, rgba(101, 90, 167, 1) 43%, rgba(133, 76, 185, 1) 60%, rgba(56, 144, 170, 1) 77%, rgba(219, 154, 105, 1)); background-size:cover;">
 
 
   <main>
+	<dim style="color:white; text-align:center;">
+	<h1>作品出品</h1>
+	<h2>作品を出品しますか？</h2>
+	</dim>
+	
+
+	
+<div class="field">
+
+<div class="content">
+    <a href="https://forms.gle/9uXvXSqdMgeM7u277"  >
+	<h2 style="text-align:center; color:white;">Googleフォームより</h2>
+	<img src="form.png" style=" width: 300px; ">
+    </a>
+</div>
+
+<div class="content">
+	<h2 style="text-align:center; color:white;"><p class="modal-open js-modal-open">メールより<br><img src="mail.png" style=" width: 300px; "></p></h2>
+	<p class="modal-open js-modal-open"></p>
+   
+</div>
+
+<div class="content">
+<a href="preparation.html"   ">
+	<h2 style="text-align:center; color:white;">各SNSより</h2>
+	<img src="SNS PRE.png" style="  width: 300px;">
+    </a>
+ </div>
+
+</div>
+<a href="index.html" style="color:white;"><h2>エントランスに戻る</h2></a>
+
+<div class="modal js-modal">
+  <div class="modal-container">
+    <!-- モーダルを閉じるボタン -->
+    <div class="modal-close js-modal-close">×</div>
+    <!-- モーダル内部のコンテンツ -->
+    <div class="modal-content">
+      <p>1,作者名<br>2,作品名<br>3,作品種類（画像or音声or動画）<br>4,URLまたはファイル添付<br>5,説明<br>この順で入力して、ファイル添付(動画はYoutubeのURL)して送信してください
+
+<br><a href="mailto:tenjiru-post@f5.si">投稿</a></p>
+    </div>
+  </div>
+</div>
 
   </main>
    <style>
@@ -92,10 +210,34 @@ animation-timeline: scroll();
 
 <script>
 
+  //要素を取得
+const modal = document.querySelector('.js-modal'),
+      open = document.querySelector('.js-modal-open'),
+      close = document.querySelector('.js-modal-close');
+
+//「開くボタン」をクリックしてモーダルを開く
+function modalOpen() {
+  modal.classList.add('is-active');
+}
+open.addEventListener('click', modalOpen);
+
+//「閉じるボタン」をクリックしてモーダルを閉じる
+function modalClose() {
+  modal.classList.remove('is-active');
+}
+close.addEventListener('click', modalClose);
+
+//「モーダルの外側」をクリックしてモーダルを閉じる
+function modalOut(e) {
+  if (e.target == modal) {
+    modal.classList.remove('is-active');
+  }
+}
+addEventListener('click', modalOut);
   
 </script> 
 
-  <footer style="background-color:191970; position: absolute; bottom: -1000; text-align:center;">
+  <footer style="background-color:191970; position: absolute; bottom: 0; text-align:center;">
     <small style="color:white;">&copy; 2025 <a href="http://x.com/canegon330" style="color:white;">@Canegon330</a></small>
 </footer>
 
